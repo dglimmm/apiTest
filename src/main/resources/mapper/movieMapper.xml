@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.api.mapper.MovieMapper">
+
+    <select id="getMovieList" resultType="com.example.api.vo.dao.MovieDao">
+        select * from movies;
+    </select>
+    
+    <update id="updateLikes">
+	    UPDATE movies
+	    SET likeCnt = CASE 
+	        <foreach collection="movieList" item="movie" separator=" ">
+	            WHEN id = #{movie.id} THEN #{movie.likeCnt}
+	        </foreach>
+	    END
+	    WHERE id IN
+	    <foreach collection="movieList" item="movie" open="(" close=")" separator=",">
+	        #{movie.id}
+	    </foreach>
+	</update>
+	
+	<delete id="deleteMovieById" parameterType="int">
+   		 DELETE FROM movies WHERE id = #{movieId}
+	</delete>
+    
+</mapper>
