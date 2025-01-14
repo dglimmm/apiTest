@@ -8,10 +8,12 @@ import java.util.UUID;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @RequiredArgsConstructor
 @Getter
+@Setter
 @ToString
 public class ApiResponse<T> {
 	
@@ -33,6 +35,5 @@ public class ApiResponse<T> {
 	  // 에러응답과 형식을 맞추기 위한 변수
 	  @Schema(description = "입력값 에러")
 	  private List<ParamError> paramErrors;
-
 
 }

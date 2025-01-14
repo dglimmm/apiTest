@@ -5,7 +5,8 @@
 <mapper namespace="com.example.api.mapper.MovieMapper">
 
     <select id="getMovieList" resultType="com.example.api.vo.dao.MovieDao">
-        select * from movies;
+        select * 
+        from movies;
     </select>
     
     <update id="updateLikes">
@@ -21,8 +22,27 @@
 	    </foreach>
 	</update>
 	
-	<delete id="deleteMovieById" parameterType="int">
-   		 DELETE FROM movies WHERE id = #{movieId}
+	<delete id="deleteMovieById" parameterType="Long">
+   		 DELETE FROM movies 
+   		 WHERE id = #{movieId}
 	</delete>
+	
+	<insert id="insertMovie" >
+		INSERT INTO movies (
+			title, 
+			year, 
+			category, 
+			likeCnt, 
+			imgUrl
+		) 
+		VALUES
+		(	
+			#{title}, 
+			#{year} ,
+			#{category}, 
+			0 ,
+			#{imgUrl}
+		)
+	</insert>
     
 </mapper>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.api.vo.dao.MovieDao;
+import com.example.api.vo.dto.MovieDto;
 
 @Mapper
 public interface MovieMapper {
@@ -13,8 +14,11 @@ public interface MovieMapper {
 	List<MovieDao> getMovieList();
 	
 	 // 좋아요 업데이트 (여러 개의 영화 업데이트)
-	int updateLikes(List<MovieDao> movieList);
+	void updateLikes(List<MovieDao> movieList);
 	
 	//영화 삭제
-	int deleteMovieById(int movieId);
+	void deleteMovieById(Long movieId);
+	
+	//영화 삽입
+	void insertMovie(MovieDto insertList);
 }
